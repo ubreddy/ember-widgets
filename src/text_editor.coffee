@@ -118,7 +118,7 @@ Ember.Widgets.TextEditorComponent = Ember.Component.extend
   # Return the last child node of the editor
   getOrCreateLastElementInEditor: ->
     editor = @getEditor()[0]
-    if editor is undefined
+    if editor is `undefined`
       iframe = @$('iframe.text-editor-frame').contents()
       iframe.find('body').append(@get('iframeBodyContents'))
       editor = @getEditor()[0]
@@ -237,8 +237,8 @@ Ember.Widgets.DomHelper = Ember.Mixin.create
     @insertElementAtRange(range, @createElementsFromString(html)[0])
 
   # Inserts node at range
-  insertElementAtRange: (range, node, shouldDeleteContainer=false) ->
-    @deleteRange(range, shouldDeleteContainer)
+  insertElementAtRange: (range, node) ->
+    @deleteRange(range, false)
     range.insertNode(node)
     node
 
@@ -442,7 +442,7 @@ Ember.Widgets.TextEditorComponent.extend Ember.Widgets.DomHelper,
 
     existingNonEditable = this._getNonEditableParent(range.startContainer) || this._getNonEditableParent(range.endContainer)
     existingNonEditable?.remove()
-    factor = @insertElementAtRange(range, pill.render(), true)
+    factor = @insertElementAtRange(range, pill.render())
     caretContainer = @_insertCaretContainer(factor, false)
 
     # Set cursor to the end of the caret container just created
