@@ -8,6 +8,7 @@ test/runner.html
 *.swp
 
 # Bower dependencies
+bower_components
 dependencies/addepar-style-guide
 dependencies/bootstrap
 dependencies/ember
